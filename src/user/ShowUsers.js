@@ -127,7 +127,6 @@ const CompShowUser = () => {
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Email</th>
                                             <th>Acciones</th>
@@ -136,9 +135,8 @@ const CompShowUser = () => {
                                     <tbody>
                                         {user.length > 0 ? (
                                             user.map((usuario) => (
-                                                <tr key={usuario.id_userPK}>
-                                                    <td>{usuario.id_userPK}</td>
-                                                    <td>{usuario.name}</td>
+                                                <tr key={usuario.id}>
+                                                    <td>{usuario.name_user}</td>
                                                     <td>{usuario.email}</td>
                                                     <td>
                                                         <Link to={`/editar/${usuario.id_userPK}`} className="btn btn-info">Editar</Link>
