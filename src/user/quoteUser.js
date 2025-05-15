@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "../sidebar/Sidebar";
 import CancelButtonQuote from "../components/cancelButtonQuote/CancelButtonQuote";
-import { Box,  Button,  Card, CardContent, Typography, Table,  TableBody,  TableCell, TableContainer, TableHead, TableRow, Paper, Stack,  useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, Card, CardContent, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
 
 const CompShowCitasUsuario = () => {
@@ -17,7 +17,7 @@ const CompShowCitasUsuario = () => {
     const toggleSidebar = () => setSidebarAbierto(!sidebarAbierto);
     const token = localStorage.getItem("token");
     let user_id;
- 
+
     if (token) {
         const decoded = jwtDecode(token);
         user_id = decoded.id;
@@ -51,6 +51,7 @@ const CompShowCitasUsuario = () => {
         return date.toLocaleString("es-CO", {
             dateStyle: "short",
             timeStyle: "short",
+            timeZone: "America/Bogota",
         });
     };
 
