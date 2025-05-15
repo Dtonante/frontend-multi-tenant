@@ -49,9 +49,9 @@ const CompShowCitasUsuario = () => {
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         return date.toLocaleString("es-CO", {
+            timeZone: "UTC",
             dateStyle: "short",
-            timeStyle: "short",
-            timeZone: "America/Bogota",
+            timeStyle: "short"
         });
     };
 
