@@ -32,24 +32,42 @@ const Login = () => {
     localStorage.removeItem("token");
   }, []);
 
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    if (password.length < minLength) return "La contraseña debe tener al menos 8 caracteres.";
+    if (!hasUpperCase) return "La contraseña debe contener al menos una letra mayúscula.";
+    if (!hasLowerCase) return "La contraseña debe contener al menos una letra minúscula.";
+    if (!hasNumber) return "La contraseña debe contener al menos un número.";
+    if (!hasSpecialChar) return "La contraseña debe contener al menos un carácter especial.";
+
+    return null;
+  };
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-  
+
+
     try {
       const response = await axios.post(URI_LOGIN, { email, password });
-  
+
       if (response.data?.token) {
         const token = response.data.token;
-  
+
         // Guardar solo el token
         localStorage.setItem("token", token);
-  
+
         // Decodificar token para obtener datos del usuario
         const decoded = jwtDecode(token);
         const rol = decoded.name_role;
-  
+
         // Redirigir según el rol
         if (rol == "admin" || rol == "cliente") {
           navigate("/homeClients");
@@ -57,15 +75,19 @@ const Login = () => {
           setError("Rol no reconocido.");
         }
       }
-  
+
     } catch (err) {
       console.error("Error al iniciar sesión:", err.response?.data || err.message);
       setError(err.response?.data?.message || "Email o contraseña incorrectos");
+      setPassword("");
     } finally {
       setLoading(false);
     }
   };
-  
+
+
+
+
 
   return (
     <Box

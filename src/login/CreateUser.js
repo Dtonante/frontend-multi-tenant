@@ -35,33 +35,97 @@ const CreateUsers = () => {
     fetchTenants();
   }, []);
 
-  const handleCreateUser = async (e) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+   const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    try {
-      const plainPassword = password;
+    if (password.length < minLength) return "La contraseña debe tener al menos 8 caracteres.";
+    if (!hasUpperCase) return "La contraseña debe contener al menos una letra mayúscula.";
+    if (!hasLowerCase) return "La contraseña debe contener al menos una letra minúscula.";
+    if (!hasNumber) return "La contraseña debe contener al menos un número.";
+    if (!hasSpecialChar) return "La contraseña debe contener al menos un carácter especial.";
 
-      const response = await axios.post(URI_CREATE_USER, {
-        name_user,
-        tenant_id: tenantId, 
-        cellPhoneNumber,
-        password: plainPassword,
-      });
-
-      if (response.status === 201) {
-        const { email } = response.data.user;
-  
-        await showSuccessAlert(email, plainPassword);
-        navigate("/");
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || "Error al crear usuario");
-    } finally {
-      setLoading(false);
-    }
+    return null;
   };
+
+  const handleCreateUser = async (e) => {
+  e.preventDefault();
+  setError(null);
+  setLoading(true);
+
+  // Validar campos vacíos
+  if (!name_user || !tenantId || !cellPhoneNumber || !password) {
+    setError("Todos los campos son obligatorios.");
+    setLoading(false);
+    return;
+  }
+
+  // Validar contraseña
+  const passwordError = validatePassword(password);
+  if (passwordError) {
+    setError(passwordError);
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const response = await axios.post(URI_CREATE_USER, {
+      name_user,
+      tenant_id: tenantId,
+      cellPhoneNumber,
+      password,
+    });
+
+    if (response.status === 201) {
+      const { email } = response.data.user;
+
+      // Mostrar alerta con email y contraseña generada
+      await showSuccessAlert(email, password);
+
+      // Redirigir al inicio o login
+      navigate("/");
+    }
+
+  } catch (err) {
+    console.error("Error al crear usuario:", err.response?.data || err.message);
+    setError(err.response?.data?.message || "Error al crear usuario");
+    setPassword(""); 
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+  // const handleCreateUser = async (e) => {
+  //   e.preventDefault();
+  //   setError(null);
+  //   setLoading(true);
+
+  //   try {
+  //     const plainPassword = password;
+
+  //     const response = await axios.post(URI_CREATE_USER, {
+  //       name_user,
+  //       tenant_id: tenantId, 
+  //       cellPhoneNumber,
+  //       password: plainPassword,
+  //     });
+
+  //     if (response.status === 201) {
+  //       const { email } = response.data.user;
+  
+  //       await showSuccessAlert(email, plainPassword);
+  //       navigate("/");
+  //     }
+  //   } catch (err) {
+  //     setError(err.response?.data?.message || "Error al crear usuario");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <Box
