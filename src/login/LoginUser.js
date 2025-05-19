@@ -16,7 +16,7 @@ import {
   useTheme,
 } from "@mui/material"
 
-const URI_LOGIN = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/users/login";
+const URI_LOGIN = "http://localhost:3000/api/v1/Tenant/users/login";
 
 const Login = () => {
   const [email, setEmail] = useState("");

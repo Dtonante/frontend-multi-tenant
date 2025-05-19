@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
 import Sidebar from "../sidebar/Sidebar";
 
-const URI_AVAILABLE_HOURS = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/quotes/disponibles/horas";
+const URI_AVAILABLE_HOURS = "http://localhost:3000/api/v1/Tenant/quotes/disponibles/horas";
 
 const HorasDisponibles = () => {
   const [selectedDate, setSelectedDate] = useState(null);

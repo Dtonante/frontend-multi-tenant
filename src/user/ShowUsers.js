@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar.js";
 import "../css/user/ShowUsersCss.css"
 
-const URI_USERS = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/users";
+const URI_USERS = "http://localhost:3000/api/v1/Tenant/users";
 
 
 const CompShowUser = () => {

@@ -10,7 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import { jwtDecode } from "jwt-decode";
 import AlertMessage from "../components/alerts/alertMessage.js";
 
-const URI_CREATE_QUOTE = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/quotes";
+const URI_CREATE_QUOTE = "http://localhost:3000/api/v1/Tenant/quotes";
 
 const CreateQuotes = () => {
   const [dateAndTimeQuote, setDateAndTimeQuote] = useState(null);
@@ -44,7 +44,7 @@ const CreateQuotes = () => {
 
       try {
         const res = await axios.get(
-          `https://backend-multi-tenant.onrender.com/api/v1/Tenant/quotes/disponibles/horas?fecha=${formattedDate}`,
+          `http://localhost:3000/api/v1/Tenant/quotes/disponibles/horas?fecha=${formattedDate}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

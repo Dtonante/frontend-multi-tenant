@@ -30,7 +30,7 @@ const ScheduleConfigurator = () => {
         try {
             console.log("date", date);
             const response = await axios.get(
-                `https://backend-multi-tenant.onrender.com/api/v1/Tenant/scheduleConfig/config?date=${date}`,
+                `http://localhost:3000/api/v1/Tenant/scheduleConfig/config?date=${date}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
@@ -61,7 +61,7 @@ const ScheduleConfigurator = () => {
 
     const handleSave = async () => {
         try {
-            await axios.post("https://backend-multi-tenant.onrender.com/api/v1/Tenant/scheduleConfig/createSchedule", {
+            await axios.post("http://localhost:3000/api/v1/Tenant/scheduleConfig/createSchedule", {
                 date: selectedDate.format("YYYY-MM-DD"),
                 workStart: formatTime(startHour),
                 workEnd: formatTime(endHour),

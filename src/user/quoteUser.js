@@ -26,13 +26,13 @@ const CompShowCitasUsuario = () => {
     const fetchCitas = async (page = 1) => {
         try {
             const response = await axios.get(
-                `https://backend-multi-tenant.onrender.com/api/v1/Tenant/quotes/all/${user_id}?page=${page}&limit=5`,
+                `http://localhost:3000/api/v1/Tenant/quotes/all/${user_id}?page=${page}&limit=5`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
             );
             setCitas(response.data.data);
-            console.log(response.data.data)
+            console.log("llega: ", response.data.data)
             setTotalPaginas(response.data.totalPaginas);
             setPaginaActual(response.data.pagina);
         } catch (error) {
@@ -49,7 +49,7 @@ const CompShowCitasUsuario = () => {
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
         return date.toLocaleString("es-CO", {
-            timeZone: "UTC",
+            timeZone: "America/Bogota", 
             dateStyle: "short",
             timeStyle: "short"
         });

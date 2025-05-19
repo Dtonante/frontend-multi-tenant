@@ -13,7 +13,7 @@ const CancelButtonQuote = ({ idQuote, onCancelSuccess }) => {
 
         try {
             await axios.put(
-                `https://backend-multi-tenant.onrender.com/api/v1/tenant/quotes/cancel/cancelCustomerQuote/${idQuote}`,
+                `http://localhost:3000/api/v1/tenant/quotes/cancel/cancelCustomerQuote/${idQuote}`,
                 {},
                 {
                     headers: { Authorization: `Bearer ${token}` },

@@ -7,7 +7,7 @@ import "../css/user/ShowUsersCss.css";
 import CancelButtonQuote from "../components/cancelButtonQuote/CancelButtonQuote.js";
 import { Box, Grid, Typography, Select, MenuItem, TextField, Button, Table, TableHead,  TableRow, TableCell, TableBody, TableContainer,  Paper,  Pagination } from "@mui/material";
 
-const URI_QUOTES_UPCOMING_UPDATE = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/quotes/upcoming/update";
+const URI_QUOTES_UPCOMING_UPDATE = "http://localhost:3000/api/v1/Tenant/quotes/upcoming/update";
 
 const CompShowQuotes = () => {
     const [quotes, setQuotes] = useState([]);

@@ -5,7 +5,7 @@ import axios from "axios";
 import "../css/quotes/QuotesCalendarCss.css";
 import { Box, Typography, Paper, Grid,  List, ListItem, ListItemText, } from "@mui/material";
 
-const URI_GET_QUOTES_CALENDAR = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/quotes/all/calendar";
+const URI_GET_QUOTES_CALENDAR = "http://localhost:3000/api/v1/Tenant/quotes/all/calendar";
 
 const QuotesCalendar = () => {
     const [quotes, setQuotes] = useState([]);

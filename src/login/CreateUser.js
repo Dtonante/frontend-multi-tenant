@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Box, Card, CardContent, CardMedia, TextField,  Button, Typography, Alert, CircularProgress, useMediaQuery,  useTheme, Grid,  MenuItem,  Select, InputLabel,  FormControl } from "@mui/material";
 import showSuccessAlert from "../components/alerts/showSuccessAlert";
 
-const URI_CREATE_USER = "https://backend-multi-tenant.onrender.com/api/v1/Tenant/users";
-const URI_LIST_TENANTS = "https://backend-multi-tenant.onrender.com/api/v1/Tenant"; 
+const URI_CREATE_USER = "http://localhost:3000/api/v1/Tenant/users";
+const URI_LIST_TENANTS = "http://localhost:3000/api/v1/Tenant"; 
 
 const CreateUsers = () => {
   const [name_user, setName_user] = useState("");
